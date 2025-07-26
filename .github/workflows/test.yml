@@ -11,13 +11,16 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        # Змінюємо версію Node.js на новішу
+        node-version: [20.x] # Або [22.x], якщо хочеш найновішу, як локально
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3 # Оновлюємо до v3 (або v4)
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3 # Оновлюємо до v3 (або v4)
       with:
         node-version: ${{ matrix.node-version }}
+        cache: 'npm' # Додаємо кешування для npm
     - run: npm install
     - run: npm test
+    
